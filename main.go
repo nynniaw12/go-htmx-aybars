@@ -1,16 +1,22 @@
 package main
 
 import (
-	"net/http"
+	"context"
+	"example/hello/templates"
+	"os"
 
 	"github.com/labstack/echo/v4"
 )
 
+
 func main() {
 	e := echo.New()
+	component := templates.Index()
+	component.Render(context.Background(), os.Stdout)
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+		return component.Render(context.Background(), c.Response().Writer)
 	})
 	e.Static("/static", "static")
+	e.Static("/css", "/css")
 	e.Logger.Fatal(e.Start(":1323"))
 }
