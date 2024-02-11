@@ -9,17 +9,18 @@ templ Index() {
             <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
         </head>
         
-        <body>
-            <div class="h-screen w-screen flex flex-col justify-center items-center">
+        <body class="text-xl">
+            <div id="content">
+                <div class="h-screen w-screen flex flex-col justify-center items-center bg-black">
                   <h1 
-                    id="hello"
-                    class="font-medium htmx-swapping:opacity-0 transition-opacity duration-1000"
+                    class="text-white font-medium htmx-swapping:opacity-0 transition-opacity duration-1000"
                     hx-get="/init"
-                    hx-trigger="intersect delay:3s"
-                    hx-swap="#hello swap:1s"
+                    hx-trigger="intersect delay:250ms"
+                    hx-swap="#content swap:1s"
                     >
                     Hello, I am Aybars
                 </h1>
+            </div>
             </div>
         </body>
     </html>

@@ -10,7 +10,8 @@ module.exports = {
             }
         },
         fontFamily: {
-            sans: ["EditorialNew"],
+            serif: ["EditorialNew"],
+            sans: ["Quicksand"]
         },
     },
     plugins: [

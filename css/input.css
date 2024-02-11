@@ -8,4 +8,10 @@
     src: url(/fonts/PPEditorialNew-Regular.ttf);
     font-weight: normal;
   }
+
+  @font-face {
+    font-family: Quicksand;
+    src: url(/fonts/Quicksand-Regular.ttf);
+    font-weight: normal;
+  }
   
