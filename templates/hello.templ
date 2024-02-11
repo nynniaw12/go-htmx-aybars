@@ -1,7 +1,11 @@
 package templates
 
 templ Hello(name string) {
-  <body>
-	    <div class="bg-blue-500">Hello, I am { name }</div>
-  </body>
+  <h1 class="font-medium"
+      hx-get="/trigger_delay"
+      hx-trigger="delay:25s"
+      hx-swap="outerHTML"
+    >
+    Hello, I am { name }
+  </h1>
 }

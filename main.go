@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"example/hello/templates"
-	"os"
 
 	"github.com/labstack/echo/v4"
 )
@@ -11,12 +10,16 @@ import (
 
 func main() {
 	e := echo.New()
-	component := templates.Index()
-	component.Render(context.Background(), os.Stdout)
 	e.GET("/", func(c echo.Context) error {
+		component := templates.Index()
+		return component.Render(context.Background(), c.Response().Writer)
+	})
+	e.GET("/init", func(c echo.Context) error {
+		component :=templates.Portfolio()
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 	e.Static("/static", "static")
-	e.Static("/css", "/css")
+	e.Static("/fonts","fonts")
+	e.Static("/css", "css")
 	e.Logger.Fatal(e.Start(":1323"))
 }

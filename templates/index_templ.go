@@ -23,15 +23,7 @@ func Index() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"en\"><head><meta charset=\"utf-8\"><title>Hasan Aybars Ari Portfolio</title><link href=\"/css/output.css\" rel=\"stylesheet\"></head><body><div class=\"h-screen w-screen bg-black flex flex-col justify-center items-center\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = Hello("Aybars").Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"en\"><head><meta charset=\"utf-8\"><title>Hasan Aybars Ari Portfolio</title><link href=\"/css/output.css\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.10\" integrity=\"sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC\" crossorigin=\"anonymous\"></script></head><body><div class=\"h-screen w-screen flex flex-col justify-center items-center\"><h1 id=\"hello\" class=\"font-medium htmx-swapping:opacity-0 transition-opacity duration-1000\" hx-get=\"/init\" hx-trigger=\"intersect delay:3s\" hx-swap=\"#hello swap:1s\">Hello, I am Aybars\r</h1></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
