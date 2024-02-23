@@ -1,5 +1,6 @@
 package templates
 
+
 templ Index() {
     <html lang="en">
         <head>
@@ -7,16 +8,18 @@ templ Index() {
             <title>Hasan Aybars Ari Portfolio</title>
             <link href="/css/output.css" rel="stylesheet"/>
             <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"/>
         </head>
         
         <body class="text-xl">
-            <div id="content">
+            <div id="hello">
                 <div class="h-screen w-screen flex flex-col justify-center items-center bg-black">
                   <h1 
                     class="text-white font-medium htmx-swapping:opacity-0 transition-opacity duration-1000"
-                    hx-get="/init"
+                    hx-get="/about"
                     hx-trigger="intersect delay:250ms"
-                    hx-swap="#content swap:1s"
+                    hx-swap="#hello swap:1s"
                     >
                     Hello, I am Aybars
                 </h1>

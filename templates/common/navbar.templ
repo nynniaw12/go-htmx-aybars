@@ -1,0 +1,49 @@
+package common
+
+templ NavBar() {
+	<header class="bg-black fixed top-0 left-0 right-0 z-50">
+		<nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+			<div class="hidden lg:flex lg:gap-x-12 ml-auto">
+				<div class="relative">
+					<button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300 link-underline link-underline-black" hx-get="/about" hx-swap="innerHTML" hx-target="#main-content" hx-trigger="click">
+						About Me    
+					</button>
+				</div>
+				<div class="relative">
+					<button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300 link-underline link-underline-black" hx-get="/site" hx-swap="innerHTML" hx-target="#main-content" hx-trigger="click">
+						About This Site    
+					</button>
+				</div>
+				<div class="relative">
+					<button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300 link-underline link-underline-black" hx-get="/contact" hx-swap="innerHTML" hx-target="#main-content" hx-trigger="click">
+						Contact
+					</button>
+				</div>
+				<div class="relative">
+					<button type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300 link-underline link-underline-black" hx-get="/library" hx-swap="innerHTML" hx-target="#main-content" hx-trigger="click">
+						My Library
+					</button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<style>
+	.link-underline {
+		border-bottom-width: 0;
+		background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+		background-size: 0 3px;
+		background-position: 0 100%;
+		background-repeat: no-repeat;
+		transition: background-size .25s ease-in-out;
+	}
+
+	.link-underline-black {
+		background-image: linear-gradient(transparent, transparent), linear-gradient(#e2e8f0, #94a3b8)
+	}
+
+	.link-underline:hover {
+		background-size: 100% 3px;
+		background-position: 0 100%
+	}
+    </style>
+}

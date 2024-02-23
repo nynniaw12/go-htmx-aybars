@@ -10,6 +10,10 @@ import "context"
 import "io"
 import "bytes"
 
+import (
+	"github.com/nynniaw12/go-htmx-aybars/templates/common"
+)
+
 func Portfolio() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -23,7 +27,19 @@ func Portfolio() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-black h-screen w-screen flex flex-col pt-[250px] pl-[150px] gap-[10px]\"><div class=\"flex flex-row\"><span>👋</span><h1 class=\"text-white font-medium pb-[17px] text-gray-500\">Hi!</h1></div><p class=\"font-sans text-white text-5xl whitespace-pre-line\">I am an aspiring <span class=\"font-serif\">Full-stack Software Engineer</span>;</p><p class=\"font-sans text-white text-5xl whitespace-pre-line\">currently studying <span class=\"font-serif\">Computer Engineering</span> and <span class=\"font-serif\">Math</span></p><p class=\"font-sans text-white text-5xl whitespace-pre-line pb-[25px]\">at <span class=\"font-serif\">Northwestern University</span>.</p><p class=\"w-5/12 text-gray-500 pb-[25px]\">I have had the opportunity to be involved in a variety of projects spanning machine learning, artificial intelligence, full-stack development, and systems engineering.</p><p class=\"text-gray-500\">References - Juxta, GPT-Page-Finder, Auctus</p></div>")
+		templ_7745c5c3_Err = common.NavBar().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"main-content\"><div class=\"bg-black h-screen w-screen flex items-center justify-center\"><div class=\"text-left pl-[150px]\"><div class=\"flex flex-row\"><span>👋</span><h1 class=\"text-white font-medium pb-[17px] text-gray-500\">Hi!</h1></div><p class=\"font-sans text-white text-5xl whitespace-pre-line\">I am an aspiring <span class=\"font-serif\">Full-stack Software Engineer</span>;</p><p class=\"font-sans text-white text-5xl whitespace-pre-line\">currently studying <span class=\"font-serif\">Computer Engineering</span> and </p><p class=\"font-sans text-white text-5xl whitespace-pre-line pb-[25px]\"><span class=\"font-serif\">Mathematics</span> at <span class=\"font-serif\">Northwestern University</span>.</p><p class=\"w-5/12 text-gray-500 pb-[25px]\">I have had the opportunity to be involved in a variety of projects spanning machine learning, artificial intelligence, full-stack development, and systems engineering.</p><p class=\"text-gray-500\">References - Juxta, GPT-Page-Finder, Auctus</p></div><div class=\"absolute bottom-20 right-20\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = common.ButtonNext("Projects").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
