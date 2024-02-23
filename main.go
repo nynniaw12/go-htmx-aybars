@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"example/hello/templates"
+	"github.com/nynniaw12/go-htmx-aybars/templates"
 
 	"github.com/labstack/echo/v4"
 )
