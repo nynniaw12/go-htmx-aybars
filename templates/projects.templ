@@ -1,7 +1,7 @@
 package templates
 
 templ Projects() {
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white dark:bg-gray-900" id="top-sec">
     <div class="container px-6 py-10 mx-auto">
         <div class="flex items-center justify-between">
             <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">recent posts </h1>
@@ -40,7 +40,7 @@ templ Projects() {
                             <p class="text-sm text-gray-500 dark:text-gray-400">February 1, 2022</p>
                         </div>
 
-                        <a href="#" class="inline-block text-blue-500 underline hover:text-blue-400">Read more</a>
+                        <a href="#" class="inline-block text-blue-500 underline hover:text-blue-400" hx-get="/sampleproj" hx-swap="innerHTML" hx-target="#top-sec" hx-trigger="click">Read more</a>
                     </div>
 
                 </div>
