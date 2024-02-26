@@ -26,12 +26,8 @@ func main() {
 		component :=templates.Contact()
 		return component.Render(context.Background(), c.Response().Writer)
 	})
-	e.GET("/library", func(c echo.Context) error {
-		component :=templates.Library()
-		return component.Render(context.Background(), c.Response().Writer)
-	})
-	e.GET("/site", func(c echo.Context) error {
-		component :=templates.Site()
+	e.GET("/projects", func(c echo.Context) error {
+		component :=templates.Projects()
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 	e.Static("/static", "static")

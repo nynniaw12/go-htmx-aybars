@@ -7,14 +7,8 @@ import (
 templ Portfolio() {
 	@common.NavBar()
 	<div id="main-content">
-		<div class="bg-black h-screen w-screen flex items-center justify-center"> 
+		<div class="bg-slate-900 h-screen w-screen flex items-center justify-center">
 			<div class="text-left pl-[150px]">
-				<div class="flex flex-row">
-					<span>👋</span>
-					<h1 class="text-white font-medium pb-[17px] text-gray-500">
-						Hi!
-					</h1>
-				</div>
 				<p class="font-sans text-white text-5xl whitespace-pre-line">
 					I am an aspiring <span class="font-serif">Full-stack Software Engineer</span>;
 				</p>
@@ -28,11 +22,11 @@ templ Portfolio() {
 					I have had the opportunity to be involved in a variety of projects spanning machine learning, artificial intelligence, full-stack development, and systems engineering.
 				</p>
 				<p class="text-gray-500">
-					References - Juxta, GPT-Page-Finder, Auctus
+					References - 
+					<a href="link-to-juxta" class="text-emerald-600 dark:text-emerald-300 underline">Juxta</a>, 
+					<a href="link-to-gpt4v-page-finder" class="text-emerald-600 dark:text-emerald-300 underline">GPT4V-Page-Finder</a>, 
+					<a href="link-to-auctus" class="text-emerald-600 dark:text-emerald-300 underline">Auctus</a>
 				</p>
-			</div>
-			<div class="absolute bottom-20 right-20">
-				@common.ButtonNext("Projects")
 			</div>
 		</div>
 	</div>
