@@ -2,7 +2,8 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-    content: ["./templates/**/*.{html,js,templ,go}"],
+    content: ["./templates/**/*.{html,js,templ,go}",
+    "./main.go"],
     theme: {
         extend: {
             transitionDuration: {
