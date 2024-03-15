@@ -7,9 +7,6 @@ import (
 	"os"
 	"strings"
 
-	// "github.com/microcosm-cc/bluemonday"
-	// "github.com/russross/blackfriday/v2"
-
 	"github.com/nynniaw12/go-htmx-aybars/templates"
 
 	"github.com/labstack/echo/v4"
