@@ -140,8 +140,8 @@ func convertMarkdown(filename string, c echo.Context) (string, error) {
 `
 	styledHTML := strings.ReplaceAll(string(html), "<h1>", "<h1 class=\"text-3xl font-bold mb-4\">")
 	styledHTML = strings.ReplaceAll(styledHTML, "<h2>", "<h2 class=\"text-xl font-bold mb-2\">")
-	styledHTML = strings.ReplaceAll(styledHTML, "<img", "<img class=\"max-w-full h-auto max-h-20 mx-auto\"")
-	styledHTML = strings.ReplaceAll(styledHTML, "<table", "<table class=\"text-white table-auto border-2 border-gray-300\"")
+	styledHTML = strings.ReplaceAll(styledHTML, "<img", "<img class=\"max-w-full h-auto max-h-80 mx-auto\"")
+	styledHTML = strings.ReplaceAll(styledHTML, "<table", "<table class=\"text-white table-auto divide-y divide-gray-700 divide-x divide-gray-700 border-2 border-gray-700\"")
     styledHTML = strings.ReplaceAll(styledHTML, "<p>", "<p class=\"mb-4\">")
 
 	return fmt.Sprintf(formattedHTML, styledHTML), nil
