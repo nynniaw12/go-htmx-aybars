@@ -22,6 +22,8 @@ import (
 
 	"github.com/nynniaw12/go-htmx-aybars/helpers"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark-meta"
+	"github.com/yuin/goldmark/extension"
 )
 
 func main() {
@@ -61,33 +63,13 @@ func main() {
 	})
 	e.GET("/sampleproj", func(c echo.Context) error {
 
-		fileContents, err := helpers.ReadFromFile("projects/example.md")
+		formattedHTML, err := convertMarkdown("projects/example.md", c)
 		if err != nil {
-			fmt.Println("Error reading file:", err)
-			return (err)
-		}
-		parsedFileContents := parseMarkdown(string(fileContents), c)
-
-		md := goldmark.New()
-
-		var buf bytes.Buffer
-		if err := md.Convert([]byte(parsedFileContents), &buf); err != nil {
-			panic(err)
+			fmt.Println("Error converting Markdown:", err)
+			return err
 		}
 
-		html := bluemonday.UGCPolicy().SanitizeBytes(buf.Bytes())
-
-        // fix this here seperate into a templ
-		formattedHTML := `
-    <div class="mx-[20px] mt-[20px] flex flex-col">
-        %s
-    </div>
-`
-		styledHTML := strings.ReplaceAll(string(html), "<h1>", "<h1 class=\"text-4xl font-bold mb-4\">")
-		styledHTML = strings.ReplaceAll(styledHTML, "<h2>", "<h2 class=\"text-2xl font-bold mb-2\">")
-		styledHTML = strings.ReplaceAll(styledHTML, "<img", "<img class=\"max-w-full max-h-96 mx-auto\"")
-
-		return c.HTML(http.StatusOK, fmt.Sprintf(formattedHTML, styledHTML))
+		return c.HTML(http.StatusOK, formattedHTML)
 	})
 	e.Static("/static", "static")
 	e.Static("/fonts", "fonts")
@@ -107,4 +89,41 @@ func parseMarkdown(content string, c echo.Context) string {
 	})
 
 	return parsedContent
+}
+
+func convertMarkdown(filename string, c echo.Context) (string, error) {
+	fileContents, err := helpers.ReadFromFile(filename)
+	if err != nil {
+		fmt.Println("Error reading file:", err)
+		return "", err
+	}
+	parsedFileContents := parseMarkdown(string(fileContents), c)
+
+	md := goldmark.New(
+		goldmark.WithExtensions(
+			meta.New(meta.WithTable()),
+			extension.Table,
+			extension.Typographer,
+		),
+	)
+
+	var buf bytes.Buffer
+	if err := md.Convert([]byte(parsedFileContents), &buf); err != nil {
+		panic(err)
+	}
+
+	html := bluemonday.UGCPolicy().SanitizeBytes(buf.Bytes())
+
+	formattedHTML := `
+    <div class="text-white mx-[20px] mt-[20px] flex flex-col">
+        %s
+    </div>
+`
+	styledHTML := strings.ReplaceAll(string(html), "<h1>", "<h1 class=\"text-3xl font-bold mb-4\">")
+	styledHTML = strings.ReplaceAll(styledHTML, "<h2>", "<h2 class=\"text-xl font-bold mb-2\">")
+	styledHTML = strings.ReplaceAll(styledHTML, "<img", "<img class=\"max-w-full max-h-96 mx-auto\"")
+	styledHTML = strings.ReplaceAll(styledHTML, "<table", "<table class=\"text-white table-auto border-2 border-gray-300\"")
+
+	return fmt.Sprintf(formattedHTML, styledHTML), nil
+
 }

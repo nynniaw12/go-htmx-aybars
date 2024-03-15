@@ -22,3 +22,4 @@ func ReadFromFile(fileName string) ([]byte, error) {
 
     return buf.Bytes(), nil
 }
+
