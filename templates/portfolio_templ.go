@@ -27,11 +27,15 @@ func Portfolio() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"outer-content\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		templ_7745c5c3_Err = common.NavBar().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"main-content\"><div class=\"h-screen w-screen flex items-center justify-center\"><div class=\"text-left pl-[150px]\"><p class=\"font-sans text-white text-5xl whitespace-pre-line\">I am an aspiring <span class=\"font-serif\">Full-stack Software Engineer</span>;</p><p class=\"font-sans text-white text-5xl whitespace-pre-line\">currently studying <span class=\"font-serif\">Computer Engineering</span> and </p><p class=\"font-sans text-white text-5xl whitespace-pre-line pb-[25px]\"><span class=\"font-serif\">Mathematics</span> at <span class=\"font-serif\">Northwestern University</span>.</p><p class=\"w-5/12 text-gray-500 pb-[25px]\">I have had the opportunity to be involved in a variety of projects spanning machine learning, artificial intelligence, full-stack development, and systems engineering.</p><p class=\"text-gray-500\">References -  <a href=\"link-to-juxta\" class=\"text-emerald-600 dark:text-emerald-300 underline\">Juxta</a>,  <a href=\"link-to-gpt4v-page-finder\" class=\"text-emerald-600 dark:text-emerald-300 underline\">GPT4V-Page-Finder</a>,  <a href=\"link-to-auctus\" class=\"text-emerald-600 dark:text-emerald-300 underline\">Auctus</a></p></div></div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"main-content\"><div class=\"h-screen w-screen flex items-center justify-center\"><div class=\"text-left pl-[150px]\"><p class=\"font-sans text-white text-5xl whitespace-pre-line\">I am an aspiring <span class=\"font-serif\">Full-stack Software Engineer</span>;</p><p class=\"font-sans text-white text-5xl whitespace-pre-line\">currently studying <span class=\"font-serif\">Computer Engineering</span> and </p><p class=\"font-sans text-white text-5xl whitespace-pre-line pb-[25px]\"><span class=\"font-serif\">Mathematics</span> at <span class=\"font-serif\">Northwestern University</span>.</p><p class=\"w-5/12 text-gray-500 pb-[25px]\">I have had the opportunity to be involved in a variety of projects spanning machine learning, artificial intelligence, full-stack development, and systems engineering.</p><p class=\"text-gray-500\">References -  <a href=\"#\" class=\"text-emerald-600 dark:text-emerald-300 underline\" hx-get=\"/juxta-ref\" hx-swap=\"innerHTML\" hx-target=\"#main-content\" hx-trigger=\"click\">Juxta</a>,  <a href=\"https://github.com/nynniaw12/GPT4V-Pagefinder\" class=\"text-emerald-600 dark:text-emerald-300 underline\">GPT4V-Page-Finder</a>,  <a href=\"https://github.com/nynniaw12/Auctus-Mobile-App\" class=\"text-emerald-600 dark:text-emerald-300 underline\">Auctus</a></p></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

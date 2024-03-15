@@ -45,6 +45,11 @@ func main() {
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 	e.POST("/mailit", func(c echo.Context) error {
+		honeypot := c.FormValue("subject")
+		if honeypot != "" {
+			return c.String(http.StatusOK, "Sent")
+		}
+
 		name := c.FormValue("name")
 		email := c.FormValue("email")
 		message := c.FormValue("message")
@@ -52,7 +57,7 @@ func main() {
 		resp, _, err := helpers.SendMail(message, email, name)
 
 		if err != nil {
-            fmt.Print(err)
+			fmt.Print(err)
 			// return c.String(http.StatusInternalServerError, "Error sending email")
 		}
 
@@ -79,6 +84,21 @@ func main() {
 		}
 
 		return c.HTML(http.StatusOK, formattedHTML)
+	})
+	e.GET("/juxta-ref", func(c echo.Context) error {
+
+		formattedHTML, err := convertMarkdown("projects/juxta.md", c)
+		if err != nil {
+			fmt.Println("Error converting Markdown:", err)
+			return err
+		}
+
+		formattedHTML2 := `<div class="container my-24 mx-auto md:px-6" id="top-sec">
+        %s
+    </div>
+`
+
+		return c.HTML(http.StatusOK, fmt.Sprintf(formattedHTML2, formattedHTML))
 	})
 	e.GET("/website", func(c echo.Context) error {
 
