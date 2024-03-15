@@ -32,7 +32,6 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	// Check if the directory exists
 	directoryPath := "projects"
 
 	_, err := os.Stat(directoryPath)
@@ -61,9 +60,29 @@ func main() {
 		component := templates.Projects()
 		return component.Render(context.Background(), c.Response().Writer)
 	})
-	e.GET("/sampleproj", func(c echo.Context) error {
+	e.GET("/juxta", func(c echo.Context) error {
 
-		formattedHTML, err := convertMarkdown("projects/example.md", c)
+		formattedHTML, err := convertMarkdown("projects/juxta.md", c)
+		if err != nil {
+			fmt.Println("Error converting Markdown:", err)
+			return err
+		}
+
+		return c.HTML(http.StatusOK, formattedHTML)
+	})
+	e.GET("/website", func(c echo.Context) error {
+
+		formattedHTML, err := convertMarkdown("projects/website.md", c)
+		if err != nil {
+			fmt.Println("Error converting Markdown:", err)
+			return err
+		}
+
+		return c.HTML(http.StatusOK, formattedHTML)
+	})
+	e.GET("/dotfiles", func(c echo.Context) error {
+
+		formattedHTML, err := convertMarkdown("projects/dotfiles.md", c)
 		if err != nil {
 			fmt.Println("Error converting Markdown:", err)
 			return err
@@ -115,14 +134,15 @@ func convertMarkdown(filename string, c echo.Context) (string, error) {
 	html := bluemonday.UGCPolicy().SanitizeBytes(buf.Bytes())
 
 	formattedHTML := `
-    <div class="text-white mx-[20px] mt-[20px] flex flex-col">
+    <div class="space-y-4 text-white flex flex-col">
         %s
     </div>
 `
 	styledHTML := strings.ReplaceAll(string(html), "<h1>", "<h1 class=\"text-3xl font-bold mb-4\">")
 	styledHTML = strings.ReplaceAll(styledHTML, "<h2>", "<h2 class=\"text-xl font-bold mb-2\">")
-	styledHTML = strings.ReplaceAll(styledHTML, "<img", "<img class=\"max-w-full max-h-96 mx-auto\"")
+	styledHTML = strings.ReplaceAll(styledHTML, "<img", "<img class=\"max-w-full h-auto max-h-20 mx-auto\"")
 	styledHTML = strings.ReplaceAll(styledHTML, "<table", "<table class=\"text-white table-auto border-2 border-gray-300\"")
+    styledHTML = strings.ReplaceAll(styledHTML, "<p>", "<p class=\"mb-4\">")
 
 	return fmt.Sprintf(formattedHTML, styledHTML), nil
 
