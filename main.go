@@ -104,7 +104,7 @@ func main() {
 	e.Static("/fonts", "fonts")
 	e.Static("/css", "css")
 	e.Static("/assets", "assets")
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":8080"))
 }
 
 func parseMarkdown(content string, c echo.Context) string {

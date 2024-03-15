@@ -11,6 +11,6 @@ RUN go get
 
 RUN go build -o /usr/local/bin/app .
 
-EXPOSE 1323
+EXPOSE 8080 
 
 CMD ["app"]
