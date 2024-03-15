@@ -29,7 +29,7 @@ from the currently poor readability.
 - [ ] Host on own server
 - [ ] Sync with git on the server 
     - [ ] Add a bind mount to projects folder
-- [ ] Mailing for contact
+- [x] Mailing for contact
 - [ ] Complete UI
     - [x] Go md renderer
         - [x] Serving files and preprocessing md files
