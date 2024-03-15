@@ -47,9 +47,22 @@ func main() {
 		fmt.Print(c.Request().URL)
 		return component.Render(context.Background(), c.Response().Writer)
 	})
+	e.POST("/mailit", func(c echo.Context) error {
+		name := c.FormValue("name")
+		email := c.FormValue("email")
+		message := c.FormValue("message")
+
+		resp, _, err := helpers.SendMail(message, email, name)
+
+		if err != nil {
+            fmt.Print(err)
+			// return c.String(http.StatusInternalServerError, "Error sending email")
+		}
+
+		return c.String(http.StatusOK, resp)
+	})
 	e.GET("/about", func(c echo.Context) error {
 		component := templates.Portfolio()
-		fmt.Print(c.Request().URL)
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 	e.GET("/contact", func(c echo.Context) error {
@@ -142,7 +155,7 @@ func convertMarkdown(filename string, c echo.Context) (string, error) {
 	styledHTML = strings.ReplaceAll(styledHTML, "<h2>", "<h2 class=\"text-xl font-bold mb-2\">")
 	styledHTML = strings.ReplaceAll(styledHTML, "<img", "<img class=\"max-w-full h-auto max-h-80 mx-auto\"")
 	styledHTML = strings.ReplaceAll(styledHTML, "<table", "<table class=\"text-white table-auto divide-y divide-gray-700 divide-x divide-gray-700 border-2 border-gray-700\"")
-    styledHTML = strings.ReplaceAll(styledHTML, "<p>", "<p class=\"mb-4\">")
+	styledHTML = strings.ReplaceAll(styledHTML, "<p>", "<p class=\"mb-4\">")
 
 	return fmt.Sprintf(formattedHTML, styledHTML), nil
 
